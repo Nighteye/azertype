@@ -1,5 +1,9 @@
 function afficherResultat(score, total) {
-    console.log("Votre score est de " + score + " points sur un total de " + total)
+
+    let spanScore = document.querySelector(".zoneScore span");
+    spanScore.innerHTML = `${score} / ${total}`;
+
+    // console.log("Votre score est de " + score + " points sur un total de " + total)
 }
 
 function choisirPhrasesOuMots() {
