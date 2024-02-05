@@ -23,17 +23,6 @@ function afficherResultat(score, nbMotsProposes) {
  * @return {string} : le choix de l'utilisateur, ce choix est nécessairement "mots" ou "phrases
  */
 
-/*
-function choisirPhrasesOuMots() {
-    // Tant que l'utilisateur n'a pas saisi "mots" ou "phrases", on lui redemande de saisir un choix
-    let choix = prompt("Avec quelle liste désirez-vous jouer : 'mots' ou 'phrases' ?")
-    while (choix !== "mots" && choix !== "phrases") {
-        choix = prompt("Avec quelle liste désirez-vous jouer : 'mots' ou 'phrases' ?")
-    }
-    return choix
-}
-*/
-
 /**
  * Cette fonction lance la boucle de jeu, c'est à dire qu'elle demande à l'utilisateur de saisir tous les mots
  * contenus dans le tableau listePropositions. A chaque mot saisi, on incrémente le score de l'utilisateur
@@ -41,21 +30,6 @@ function choisirPhrasesOuMots() {
  * @param {array[string]} listePropositions 
  * @return {number} : le score de l'utilisateur
  */
-
-/*
-function lancerBoucleDeJeu(listePropositions) {
-    let score = 0
-    for (let i = 0; i < listePropositions.length; i++) {
-        // On demande à l'utilisateur de saisir le mot correspondant à l'indice i
-        let motUtilisateur = prompt("Entrez le mot : " + listePropositions[i])
-        if (motUtilisateur === listePropositions[i]) {
-            // Si le mot saisi par l'utilisateur est correct, on incrémente le score
-            score++
-        }
-    }
-    return score
-}
-*/
 
 function afficherProposition(mot) {
     let zoneProposition = document.querySelector(".zoneProposition");
@@ -68,7 +42,6 @@ function afficherProposition(mot) {
  */
 function lancerJeu() {
     // Initialisations
-    /*let choix = choisirPhrasesOuMots()*/
     let score = 0;
     let nbMotsProposes = listeMots.length;
     let i = 0;
@@ -77,6 +50,7 @@ function lancerJeu() {
     inputEcriture.value = "";
 
     afficherProposition(listeMots[i]);
+    afficherResultat(score, i)
     btnValiderMot.addEventListener("click", () => {
         if(listeMots[i] === inputEcriture.value) {
             ++score;
@@ -91,15 +65,4 @@ function lancerJeu() {
             afficherProposition(listeMots[i]);
         }
     });
-
-    /*
-    // On détermine la liste des mots ou des phrases à proposer à l'utilisateur
-    if (choix === "mots") {
-        score = lancerBoucleDeJeu(listeMots)
-        nbMotsProposes = listeMots.length
-    } else {
-        score = lancerBoucleDeJeu(listePhrases)
-        nbMotsProposes = listePhrases.length
-    }
-    */
 }
