@@ -42,17 +42,21 @@ function afficherProposition(mot) {
  */
 function lancerJeu() {
     // Initialisations
+    let listeProposition = listeMots;
     let score = 0;
-    let nbMotsProposes = listeMots.length;
+    let nbMotsProposes = listeProposition.length;
     let i = 0;
     let btnValiderMot = document.getElementById("btnValiderMot");
     let inputEcriture = document.getElementById("inputEcriture");
     inputEcriture.value = "";
+    let optionMots = document.getElementById("mots");
+    let optionPhrases = document.getElementById("phrases");
 
-    afficherProposition(listeMots[i]);
+    afficherProposition(listeProposition[i]);
     afficherResultat(score, i)
+
     btnValiderMot.addEventListener("click", () => {
-        if(listeMots[i] === inputEcriture.value) {
+        if(listeProposition[i] === inputEcriture.value) {
             ++score;
         }
         ++i;
@@ -62,7 +66,19 @@ function lancerJeu() {
             btnValiderMot.disabled = true;
             afficherProposition("Le jeu est fini");
         } else {
-            afficherProposition(listeMots[i]);
+            afficherProposition(listeProposition[i]);
         }
     });
+
+    optionMots.addEventListener("change", () => {
+        listeProposition = listeMots;
+        afficherProposition(listeProposition[i]);
+        afficherResultat(score, i)
+    })
+
+    optionPhrases.addEventListener("change", () => {
+        listeProposition = listePhrases;
+        afficherProposition(listeProposition[i]);
+        afficherResultat(score, i)
+    })
 }
