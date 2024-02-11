@@ -88,5 +88,17 @@ function lancerJeu() {
         })
     }
 
+    let form = document.querySelector("form")
+    form.addEventListener("submit", (event) => {
+        event.preventDefault()
+        let nom = document.getElementById("nom").value
+        let email = document.getElementById("email").value
+        let sujet = "Score au AzerType"
+        let message = `J'ai réalisé le score de ${score} au AzerType !`
+        console.log(sujet)
+        console.log(message)
+        afficherEmail(nom, email, score)
+    })
+
     afficherResultat(score, i)
 }
