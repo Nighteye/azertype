@@ -39,6 +39,24 @@ function afficherEmail(nom, email, score) {
     location.href = mailto
 }
 
+function validerNom(nom) {
+    let nomRegExp = new RegExp("\\w{2}")
+    let resultat = nomRegExp.test(nom)
+    if(!resultat) {
+        console.log("Le nom n'est pas valide")
+    }
+    return resultat
+}
+
+function validerEmail(email) {
+    let emailRegExp = new RegExp("^[a-z0-9._-]+@[a-z0-9._-]+\\.[a-z0-9._-]+$")
+    let resultat =  emailRegExp.test(email)
+    if(!resultat) {
+        console.log("L'email n'est pas valide")
+    }
+    return resultat
+}
+
 /**
  * Cette fonction lance le jeu. 
  * Elle demande à l'utilisateur de choisir entre "mots" et "phrases" et lance la boucle de jeu correspondante
@@ -95,9 +113,11 @@ function lancerJeu() {
         let email = document.getElementById("email").value
         let sujet = "Score au AzerType"
         let message = `J'ai réalisé le score de ${score} au AzerType !`
-        console.log(sujet)
-        console.log(message)
-        afficherEmail(nom, email, score)
+        if(validerEmail(email) && validerNom(nom)) {
+            afficherEmail(nom, email, score)
+        } else {
+            console.log("Le nom ou l'email n'est pas valide.")
+        }
     })
 
     afficherResultat(score, i)
