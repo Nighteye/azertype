@@ -39,22 +39,30 @@ function afficherEmail(nom, email, score) {
     location.href = mailto
 }
 
+/**
+ * Cette fonction prend un nom en paramètre et valide qu'il est au bon format
+ * ici : deux caractères au minimum
+ * @param {string} nom 
+ * @return {boolean}
+ */
 function validerNom(nom) {
-    let nomRegExp = new RegExp("\\w{2}")
-    let resultat = nomRegExp.test(nom)
-    if(!resultat) {
-        console.log("Le nom n'est pas valide")
+    if (nom.length >= 2) {
+        return true
     }
-    return resultat
+    return false
 }
 
+/**
+ * Cette fonction prend un email en paramètre et valide qu'il est au bon format. 
+ * @param {string} email 
+ * @return {boolean}
+ */
 function validerEmail(email) {
-    let emailRegExp = new RegExp("^[a-z0-9._-]+@[a-z0-9._-]+\\.[a-z0-9._-]+$")
-    let resultat =  emailRegExp.test(email)
-    if(!resultat) {
-        console.log("L'email n'est pas valide")
+    let emailRegExp = new RegExp("[a-z0-9._-]+@[a-z0-9._-]+\\.[a-z0-9._-]+")
+    if (emailRegExp.test(email)) {
+        return true
     }
-    return resultat
+    return false
 }
 
 /**
@@ -106,18 +114,24 @@ function lancerJeu() {
         })
     }
 
+    // Gestion de l'événement submit sur le formulaire de partage. 
     let form = document.querySelector("form")
     form.addEventListener("submit", (event) => {
         event.preventDefault()
-        let nom = document.getElementById("nom").value
-        let email = document.getElementById("email").value
-        let sujet = "Score au AzerType"
-        let message = `J'ai réalisé le score de ${score} au AzerType !`
-        if(validerEmail(email) && validerNom(nom)) {
-            afficherEmail(nom, email, score)
+
+        let baliseNom = document.getElementById("nom")
+        let nom = baliseNom.value
+
+        let baliseEmail = document.getElementById("email")
+        let email = baliseEmail.value
+
+        if (validerNom(nom) && validerEmail(email)) {
+            let scoreEmail = `${score} / ${i}`
+            afficherEmail(nom, email, scoreEmail)
         } else {
-            console.log("Le nom ou l'email n'est pas valide.")
+            console.log("Erreur")
         }
+        
     })
 
     afficherResultat(score, i)
