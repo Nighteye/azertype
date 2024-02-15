@@ -157,3 +157,5 @@ function lancerJeu() {
 
     afficherResultat(score, i)
 }
+
+// ajout d'un commentaire pour tester git
