@@ -22,3 +22,5 @@ lancerJeu()
 
 // let listeBtnRadio = document.querySelectorAll(".optionSource input")
 // console.log(listeBtnRadio)
+
+// en voici un autre

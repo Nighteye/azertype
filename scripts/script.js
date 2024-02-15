@@ -159,3 +159,5 @@ function lancerJeu() {
 }
 
 // ajout d'un commentaire pour tester git
+
+// ceci est un deuxième commentaire de test
